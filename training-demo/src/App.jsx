@@ -18,7 +18,7 @@ function App() {
         const respo = fetch("https://reqres.in/api/users?page=2" , reque)
                         .then(res => res.json())
                         .then(res => setResp(res['data']))
-    })
+    } , [])
 
     const onLoginSuccess = () => {
         setShowlog(!(showlog));
