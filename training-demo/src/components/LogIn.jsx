@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useReducer } from "react";
 
 import{
     Card,
@@ -12,11 +12,75 @@ import{
     Button
 } from "reactstrap"
 
+{/*const initialState = {*/}
+    {/*email: "",*/}
+    {/*password: "",*/}
+    {/*emailError: "",*/}
+    {/*passworderror: "",*/}
+    {/*submit: true,*/}
+{/*}*/}
+
+{/*const loginConstants = {*/}
+    {/*setEmail: "SET_EMAIL",*/}
+    {/*setPassword: "SET_PASSWORD",*/}
+    {/*setEmailError: "SET_EMAIL_ERROR",   */}
+    {/*setPasswordError: "SET_PASSWORD_ERROR",*/}
+    {/*setSubmit: "SET_SUBMIT"*/}
+{/*}*/}
+
+{/*const reducer = (state , action) => {*/}
+    {/*const {type , payload} = action*/}
+
+    {/*switch(type){*/}
+        {/*case loginConstants.setEmail:{*/}
+            {/*return{*/}
+                {/*...state,*/}
+                {/*email: payload*/}
+            {/*}*/}
+        {/*}*/}
+
+        {/*case loginConstants.setPassword:{*/}
+            {/*return{*/}
+                {/*...state,*/}
+                {/*password: payload*/}
+            {/*}*/}
+        {/*}*/}
+
+        {/*case loginConstants.setEmailError:{*/}
+            {/*return{*/}
+                {/*...state,*/}
+                {/*emailError: payload*/}
+            {/*}*/}
+        {/*}*/}
+
+        {/*case loginConstants.setPasswordError:{*/}
+            {/*return{*/}
+                {/*...state,*/}
+                {/*passwordError: payload*/}
+            {/*}*/}
+        {/*}*/}
+
+        {/*case loginConstants.setSubmit:{*/}
+            {/*return{*/}
+                {/*...state,*/}
+                {/*submit: payload*/}
+            {/*}*/}
+        {/*}*/}
+
+        {/*default: {*/}
+            {/*return state*/}
+        {/*}*/}
+    {/*}*/}
+{/*}*/}
 
 const LogIn = (props) => {
     const {onShow} = props
     const [email , setEmail] = useState("")
     const [password , setPassword] = useState("")
+    //const {email , password , emailError , passwordError , submit} = state;
+
+
+    //const [state , dispatch] = useReducer(reducer , initialState)
 
     const onnSubmit = (event)=>{
         event.preventDefault();
