@@ -19,7 +19,7 @@ const signinSchema = yup.object().shape({
     username: yup.string().required(),
     password: yup.string().required().min(8),
     confirmpwd: yup.string().required().min(8),
-    contact: yup.string().min(10).max(10)
+    contact: yup.string().min(10)
 })
 
 const signinConstants = {
@@ -177,16 +177,13 @@ const SignIn = () => {
         dispatch({type: signinConstants.setContactError , payload: ""});
 
         signinSchema
-        .validate(({email , username , password , confirmpwd , contact} , {abortEarly: false}))
+        .validate({email , username , password , confirmpwd , contact} , {abortEarly: false})
             .then((res) => {
-                console.log("sfsfsdfsdfsdfsdf")
                 console.log(res)
             })
             .catch((err) => {
-                console.log("==================")
-                console.log(err)
+                console.log(err.inner)
                 err.inner.forEach((e) => {
-                    console.log("=>>>>>>>>>>>>>>>>>>>>.." , e)
                     if(e.path==="email"){
                         dispatch({
                             type: signinConstants.setEmailError,
