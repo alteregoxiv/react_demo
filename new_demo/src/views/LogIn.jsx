@@ -87,7 +87,8 @@ const LogIn = () => {
     return(
       <Container>
         {login.response!==200 ?
-        (<Card style={{margin: "30vh", width: "50vw"}}> 
+        (
+          <Card style={{margin: "30vh", width: "50vw"}}> 
             <CardBody>
                 <CardTitle tag="h1">LogIn</CardTitle>
                 <Form inline onSubmit={onnSubmit}> 
@@ -124,11 +125,13 @@ const LogIn = () => {
                     <Button color="primary" type="submit">Submit</Button>   <Button color="primary" type="reset" onClick={resetAll}>Reset</Button>
                 </Form>
             </CardBody>
+          {console.log(login)}
         </Card>) : 
         (
           <>
             <h1>WELCOME</h1>
             <Button color="primary" type="reset" onClick={logOut}>Reset</Button>
+            {console.log(login)}
           </>
         )}
       </Container>

@@ -36,7 +36,7 @@ function App() {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="https://github.com/reactstrap/reactstrap">
+            <NavLink href="/blogs">
               Blogs
             </NavLink>
           </NavItem> 
