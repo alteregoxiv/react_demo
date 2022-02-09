@@ -19,8 +19,6 @@ const Alldetails = (props) => {
         <CardText tag="h4">Phone: {user.phone}</CardText>
         <CardText tag="h4">Address: {user.address.street}, {user.address.suite}, {user.address.city}, {user.address.zipcode}</CardText>
         <CardText tag="h4">Company: {user.company.name}</CardText>
-        
-        <Button>Button</Button>
       </CardBody>
     </Card>
   )

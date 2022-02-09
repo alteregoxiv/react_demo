@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { userDataInitiate , userDataSuccess , userDataFailure } from "../redux/users/action";
 import Alldetails from "./alldetails";
 import Moredetails from "./moredetails";
+import { useSelector } from "react-redux";
 
 const { useState , useEffect } = require("react")
 
 const Details = () => {
-  const [users , setUsers] = useState([])
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.user);
 
   const fetchuser = () => {
     const reque ={ 
@@ -21,7 +22,7 @@ const Details = () => {
     .then((res) => {
       console.log(res)
       dispatch(userDataSuccess(res))
-      console.log(users)
+      console.log(user)
     })
     .catch(error => dispatch(userDataFailure(error)))
   }
@@ -33,13 +34,14 @@ const Details = () => {
 
   return(
     <Container>
-    {users.map((i) => {
+    {user.userData.map((i) => {
         return (
           <Alldetails 
             user={i}
           />
         )
       })}
+    
     </Container>
   )
 }
