@@ -1,6 +1,5 @@
-import { useState , useReducer } from "react";
-
 import{
+    Container,
     Card,
     CardBody,
     CardTitle,
@@ -12,21 +11,19 @@ import{
     Button
 } from "reactstrap"
 
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginInitiate , loginSuccess , loginFailure } from "../redux/login/action";
+import { blogsInitiate , blogsSuccess , blogsFailure  } from "../redux/blogs/action";
 import { useSelector } from "react-redux";
 
-
-const LogIn = (props) => {
-    const {onShow} = props
-    const [email , setEmail] = useState("")
-    const [password , setPassword] = useState("")
-    //const {email , password , emailError , passwordError , submit} = state;
-
-
-    //const [state , dispatch] = useReducer(reducer , initialState)
+const LogIn = () => {
     const dispatch = useDispatch()
     const login = useSelector((state) => state.login);
+    const blogs = useSelector((state) => state.blogs)
+
+    const [email , setEmail] = useState("")
+    const [password , setPassword] = useState("")
 
     const onnSubmit = (event)=>{
         event.preventDefault();
@@ -34,9 +31,9 @@ const LogIn = (props) => {
         const email = els.email.value;
         const password = els.password.value;
         
-       dispatch(loginInitiate()) 
+        dispatch(loginInitiate()) 
 
-        const req ={ 
+        const req = { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({"email": email , "password": password})
@@ -44,16 +41,29 @@ const LogIn = (props) => {
 
         const resp = fetch("https://reqres.in/api/login" , req)
                         .then(res => {
-                            if(res.status===200)
-                                //dispatch(loginSuccess(res.status))
-                              onShow()
-                            else
-                                alert("Invalid Credentials");
+                            if(res.status===200){
+                                dispatch(loginSuccess(res.status))
+                                dispatch(blogsInitiate())
+                                const reque = {
+                                  method: 'GET',
+                                  headers: { 'Content-Type': 'application/json' }
+                                }
+                                
+                                const respo = fetch("https://jsonplaceholder.typicode.com/posts" , reque)
+                                .then(respi => respi.json())
+                                .then(respi => {
+                                  if(respi.status===200)
+                                    dispatch(blogsSuccess(respi))
+                                  else
+                                    dispatch(blogsFailure("No Blogs Found"))
+                                })
+                            }
+                            else{
+                                dispatch(loginFailure("Invalid Credentials"));
+                                console.log(login)
+                                alert(login.error)
+                              }
                         });
-                        
-  
-        //console.log(email , password);
-        //console.log(resp);
     }
 
     const clearEmail = () => {
@@ -69,8 +79,15 @@ const LogIn = (props) => {
         setPassword("");
     }
 
+  const logOut = () => {
+    dispatch(loginInitiate())
+    dispatch(blogsInitiate())
+  }
+
     return(
-        <Card> 
+      <Container>
+        {login.response!==200 ?
+        (<Card style={{margin: "30vh", width: "50vw"}}> 
             <CardBody>
                 <CardTitle tag="h1">LogIn</CardTitle>
                 <Form inline onSubmit={onnSubmit}> 
@@ -107,7 +124,14 @@ const LogIn = (props) => {
                     <Button color="primary" type="submit">Submit</Button>   <Button color="primary" type="reset" onClick={resetAll}>Reset</Button>
                 </Form>
             </CardBody>
-        </Card>
+        </Card>) : 
+        (
+          <>
+            <h1>WELCOME</h1>
+            <Button color="primary" type="reset" onClick={logOut}>Reset</Button>
+          </>
+        )}
+      </Container>
     )
 }
 

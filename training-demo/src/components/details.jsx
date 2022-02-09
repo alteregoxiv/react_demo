@@ -1,8 +1,6 @@
-import { Container } from "reactstrap";
 import { useDispatch } from "react-redux";
 import { userDataInitiate , userDataSuccess , userDataFailure } from "../redux/users/action";
 import Alldetails from "./alldetails";
-import Moredetails from "./moredetails";
 import { useSelector } from "react-redux";
 
 const { useState , useEffect } = require("react")
@@ -33,7 +31,7 @@ const Details = () => {
 
 
   return(
-    <Container>
+    <>
     {user.userData.map((i) => {
         return (
           <Alldetails 
@@ -42,7 +40,7 @@ const Details = () => {
         )
       })}
     
-    </Container>
+    </>
   )
 }
 

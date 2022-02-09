@@ -1,34 +1,35 @@
-import { userActionConstants } from "./actionTypes";
+import { loginActionConstants } from "./actionTypes";
 
 const initialState = {
-  userData: [],
+  response: "",
   loader: false,
   error: ""
 }
 
-const userReducer = (state=initialState , action) => {
+const loginReducer = (state=initialState , action) => {
   const {type , payload} = action;
   switch(type){
-    case userActionConstants.USERS_DATA_INITIATE: {
+    case loginActionConstants.LOGIN_INITIATE: {
       return {
         ...state,
-        userData: [],
+        response: "",
         loader: true,
         error: ""
       }
     }
 
-    case userActionConstants.USERS_DATA_SUCCESS: {
+    case loginActionConstants.LOGIN_SUCCESS: {
       return {
         ...state,
-        userData: payload,
+        response: payload,
         loader: false
       }
     }
 
-    case userActionConstants.USERS_DATA_FAILURE: {
+    case loginActionConstants.LOGIN_FAILURE: {
       return {
         ...state,
+        response: "",
         loader: false,
         error: payload
       }
@@ -38,4 +39,4 @@ const userReducer = (state=initialState , action) => {
   }
 }
 
-export default userReducer
+export default loginReducer

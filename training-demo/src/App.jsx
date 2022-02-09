@@ -6,10 +6,17 @@ import LogIn from "./components/LogIn";
 import SignIn from "./components/SignIn"
 import Details from "./components/details";
 import All from "./App.css";
+import { Link, Route, Routes } from "react-router-dom"
+import { useDispatch } from "react-redux";
+import { loginInitiate , loginSuccess , loginFailure } from "./redux/login/action";
+import { useSelector } from "react-redux";
 
 function App() {
     let [showlog  , setShowlog] = useState(true)
-    let [resp , setResp] = useState({})
+    let [resp , setResp] = useState([])
+
+    const dispatch = useDispatch()
+    const login = useSelector((state) => state.login);
 
     useEffect(() => {
         const reque ={ 
@@ -24,6 +31,7 @@ function App() {
 
     const onLoginSuccess = () => {
         setShowlog(!(showlog));
+        console.log(login)
     }
     
     return (

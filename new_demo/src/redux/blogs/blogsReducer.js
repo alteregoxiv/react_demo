@@ -1,34 +1,35 @@
-import { userActionConstants } from "./actionTypes";
+import { blogsActionConstants } from "./actionTypes";
 
 const initialState = {
-  userData: [],
+  data: "",
   loader: false,
   error: ""
 }
 
-const userReducer = (state=initialState , action) => {
+const blogsReducer = (state=initialState , action) => {
   const {type , payload} = action;
   switch(type){
-    case userActionConstants.USERS_DATA_INITIATE: {
+    case blogsActionConstants.BLOGS_INITIATE: {
       return {
         ...state,
-        userData: [],
+        data: "",
         loader: true,
         error: ""
       }
     }
 
-    case userActionConstants.USERS_DATA_SUCCESS: {
+    case blogsActionConstants.BLOGS_SUCCESS: {
       return {
         ...state,
-        userData: payload,
+        data: payload,
         loader: false
       }
     }
 
-    case userActionConstants.USERS_DATA_FAILURE: {
+    case blogsActionConstants.BLOGS_FAILURE: {
       return {
         ...state,
+        data: "",
         loader: false,
         error: payload
       }
@@ -38,4 +39,4 @@ const userReducer = (state=initialState , action) => {
   }
 }
 
-export default userReducer
+export default blogsReducer
