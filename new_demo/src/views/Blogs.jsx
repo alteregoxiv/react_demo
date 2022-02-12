@@ -1,10 +1,3 @@
-import{
-    Card,
-    CardBody,
-    CardTitle,
-    CardText,
-} from "reactstrap"
-
 import BlogCard from "../components/BlogCard";
 import { useEffect, useState } from "react";
 import { blogsInitiate , blogsSuccess , blogsFailure } from "../redux/blogs/action";
@@ -28,18 +21,7 @@ const Blogs = () => {
 
   return(
     <>
-    {blogs.data ? (<>
-      {blogs.data.map((i) => {
-        <Card>
-          <CardBody>
-    				{/*<CardTitle tag="h2">*/}
-              {/*{i.id} {i.title}*/}
-            {/*</CardTitle>*/}
-    				{/*<CardText tag="h3">{i.body}</CardText>*/}
-            <CardText tag="h3">bhjhjhj</CardText>
-    			</CardBody>
-        </Card>
-      })}
+    {blogs.data ? (<>{JSON.stringify(blogs.data)}
     {blogs.data.map((i) => {
       <BlogCard 
         id={i.id}
