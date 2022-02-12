@@ -11,11 +11,11 @@ import{
     Button
 } from "reactstrap"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginInitiate , loginSuccess , loginFailure } from "../redux/login/action";
-import { blogsInitiate , blogsSuccess , blogsFailure  } from "../redux/blogs/action";
 import { useSelector } from "react-redux";
+import Blogs from "../views/Blogs" 
 
 const LogIn = () => {
     const dispatch = useDispatch()
@@ -24,6 +24,7 @@ const LogIn = () => {
 
     const [email , setEmail] = useState("")
     const [password , setPassword] = useState("")
+
 
     const onnSubmit = (event)=>{
         event.preventDefault();
@@ -43,20 +44,7 @@ const LogIn = () => {
                         .then(res => {
                             if(res.status===200){
                                 dispatch(loginSuccess(res.status))
-                                dispatch(blogsInitiate())
-                                const reque = {
-                                  method: 'GET',
-                                  headers: { 'Content-Type': 'application/json' }
-                                }
-                                
-                                const respo = fetch("https://jsonplaceholder.typicode.com/posts" , reque)
-                                .then(respi => respi.json())
-                                .then(respi => {
-                                  if(respi.status===200)
-                                    dispatch(blogsSuccess(respi))
-                                  else
-                                    dispatch(blogsFailure("No Blogs Found"))
-                                })
+                                localStorage.setItem("response", 200)
                             }
                             else{
                                 dispatch(loginFailure("Invalid Credentials"));
@@ -80,14 +68,11 @@ const LogIn = () => {
     }
 
   const logOut = () => {
-    dispatch(loginInitiate())
-    dispatch(blogsInitiate())
   }
 
     return(
-      <Container>
-        {login.response!==200 ?
-        (
+      <Container>{!login.response ?
+          (<>
           <Card style={{margin: "30vh", width: "50vw"}}> 
             <CardBody>
                 <CardTitle tag="h1">LogIn</CardTitle>
@@ -125,15 +110,8 @@ const LogIn = () => {
                     <Button color="primary" type="submit">Submit</Button>   <Button color="primary" type="reset" onClick={resetAll}>Reset</Button>
                 </Form>
             </CardBody>
-          {console.log(login)}
-        </Card>) : 
-        (
-          <>
-            <h1>WELCOME</h1>
-            <Button color="primary" type="reset" onClick={logOut}>Reset</Button>
-            {console.log(login)}
-          </>
-        )}
+        </Card></>):
+          (<><Blogs /></>)}
       </Container>
     )
 }

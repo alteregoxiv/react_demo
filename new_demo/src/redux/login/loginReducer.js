@@ -1,7 +1,7 @@
 import { loginActionConstants } from "./actionTypes";
 
 const initialState = {
-  response: "",
+  response: localStorage.getItem("response") ? 200 : "",
   loader: false,
   error: ""
 }
@@ -12,7 +12,7 @@ const loginReducer = (state=initialState , action) => {
     case loginActionConstants.LOGIN_INITIATE: {
       return {
         ...state,
-        response: "",
+        response: localStorage.getItem("response") ? 200 : "",
         loader: true,
         error: ""
       }
