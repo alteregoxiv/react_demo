@@ -21,13 +21,13 @@ const Blogs = () => {
 
   return(
     <>
-    {blogs.data ? (<>{JSON.stringify(blogs.data)}
+    {blogs.data ? (<>
     {blogs.data.map((i) => {
-      <BlogCard 
+      return(<BlogCard 
         id={i.id}
         title={i.title}
         body={i.body}
-      />
+      />)
     })}</>) : (
       <>Wait</>
     )}

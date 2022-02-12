@@ -1,5 +1,6 @@
 import './App.css';
 import{
+    Button,
   Navbar,
   NavbarBrand,
   NavbarToggler,
@@ -21,6 +22,9 @@ function App() {
     const dispatch = useDispatch()
     //const login = useSelector((state) => state.login);
     //const blogs = useSelector((state) => state.blogs);
+    const logOut = () => {
+        localStorage.setItem("response", "")
+    }
   return (
     <>
     {!localStorage.getItem("response") ? 
@@ -57,6 +61,7 @@ function App() {
 						<Routes>
 							<Route path="/" element={<h1>HI</h1>} />
                             <Route path="/login" element={<LogIn />} />
+                            <Route path="/blogs" element={<Blogs />} />
 								{/*<Route path="/blogs/details/:userId" element={<BlogDetails />} />*/}
 							{/*</Route>*/}
 						</Routes>
@@ -79,8 +84,8 @@ function App() {
           navbar
         >
           <NavItem>
-            <NavLink href="/logout">
-              LogOut
+            <NavLink>
+              <Button color="primary" type="reset" onClick={logOut}>LogOut</Button>
             </NavLink>
           </NavItem>
         </Nav>
