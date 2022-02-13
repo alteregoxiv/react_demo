@@ -1,0 +1,14 @@
+.main{
+  height: 90vh;
+  margin: 2%;
+  overflow: scroll;
+  border: 5px solid #212529;
+}
+
+.newcard{
+  margin: 2%;
+  border-radius: 2vh;
+  background-color: #212529;
+  color: white;
+  box-shadow: 5px 5px 8px green;
+}

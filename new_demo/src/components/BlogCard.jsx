@@ -1,3 +1,5 @@
+import "../Blogs.css"
+
 import{
     Card,
     CardBody,
@@ -9,10 +11,10 @@ const BlogCard = (props) => {
   const {id , title , body} = props;;
 
   return(
-    <Card>
+    <Card className="newcard">
       <CardBody>
 				<CardTitle tag="h2">
-					{id} {title}
+					{id}. {title}
 				</CardTitle>
 				<CardText tag="h3">{body}</CardText>
 			</CardBody>

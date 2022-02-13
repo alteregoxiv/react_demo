@@ -1,3 +1,5 @@
+import "../Blogs.css" 
+
 import BlogCard from "../components/BlogCard";
 import { useEffect, useState } from "react";
 import {
@@ -37,12 +39,14 @@ const Blogs = () => {
     <>
       {blogs.data ? (
         <>
+        <div className="main">
         {blogs.data.map((i) => {
           return <BlogCard id={i.id} title={i.title} body={i.body} />;
         })}
+        </div>
         </>
       ) : (
-        <>Gathering Blogs...</>
+        <><h1>Gathering Blogs...</h1></>
       )}
     </>
   );
