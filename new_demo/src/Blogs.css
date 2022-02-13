@@ -1,5 +1,9 @@
+body{
+  background-color: grey;
+}
+
 .main{
-  height: 90vh;
+  height: 85vh;
   margin: 2%;
   overflow: scroll;
   border: 5px solid #212529;
