@@ -13,6 +13,8 @@ import { Link, Route, Routes } from "react-router-dom";
 
 import LogIn from "../views/LogIn";
 import Blogs from "../views/Blogs";
+import { BlogDetails } from "../views/BlogDetails";
+import Index from "../views/Index";
 
 const Navin = () => {
   return (
@@ -31,10 +33,11 @@ const Navin = () => {
       <div style={{ display: "flex" }}>
         <div>
           <Routes>
-            <Route path="/" element={<h1>HI</h1>} />
+            <Route path="/" element={<Index />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/blogs" element={<Blogs />} />
-            {/*<Route path="/blogs/details/:userId" element={<BlogDetails />} />*/}
+              {/*<Route path="" element={<Blogs />} /> */}
+              {/*<Route path="/blogs/details/:blogId" element={<BlogDetails />} />*/}
             {/*</Route>*/}
           </Routes>
         </div>

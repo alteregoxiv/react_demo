@@ -31,12 +31,14 @@ function App() {
       !login.response ?
       (
         <>
-        <Navin />
+          <Navin />
         </>
       )
       :
       (
-        <Blogs />
+        <>
+          <Navout />
+        </>
       )
     }
     </>

@@ -16,6 +16,8 @@ import { loginInitiate , loginSuccess , loginFailure } from "../redux/login/acti
 
 import LogIn from "../views/LogIn";
 import Blogs from "../views/Blogs";
+import Index from "../views/Index";
+import LogOut from "../views/LogOut";
 
 const Navout = () => {
   const login = useSelector((state) => state.login);
@@ -34,11 +36,10 @@ const Navout = () => {
         <Collapse navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink>
-                <Button color="primary" onClick={logOut}>
-                  LogOut
-                </Button>
-              </NavLink>
+              <NavLink href="/logout">LogOut</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/blogs">Blogs</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
@@ -46,8 +47,9 @@ const Navout = () => {
       <div style={{ display: "flex" }}>
         <div>
           <Routes>
-            <Route path="/logout" element={<h1>HI</h1>} />
-            <Route path="/" element={<h1>HI</h1>} />
+            <Route path="/" element={<Index />} />
+            <Route path="/logout" element={<LogOut />} />
+            <Route path="/blogs" element={<Blogs />} />
             {/*<Route path="/blogs/details/:userId" element={<BlogDetails />} />*/}
             {/*</Route>*/}
           </Routes>

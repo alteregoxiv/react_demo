@@ -29,17 +29,20 @@ const Blogs = () => {
       .then((res) => dispatch(blogsSuccess(res)));
   }, []);
 
+  const navigateToBlogDetails = (userId) => {
+		navigate(`/blogs/details/${userId}`)
+	}
+
   return (
     <>
       {blogs.data ? (
         <>
-          <Navout />
-          {blogs.data.map((i) => {
-            return <BlogCard id={i.id} title={i.title} body={i.body} />;
-          })}
+        {blogs.data.map((i) => {
+          return <BlogCard id={i.id} title={i.title} body={i.body} />;
+        })}
         </>
       ) : (
-        <><Navout />Gathering Blogs...</>
+        <>Gathering Blogs...</>
       )}
     </>
   );
