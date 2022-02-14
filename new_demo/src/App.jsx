@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import Index from "./views/Index";
 import Navin from "./components/Navin";
 import Navout from "./components/Navout";
+import { Navigate } from "react-router-dom";
 
 function App() {
   //const dispatch = useDispatch();

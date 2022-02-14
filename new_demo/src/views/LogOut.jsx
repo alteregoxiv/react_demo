@@ -10,10 +10,12 @@ import {
   blogsFailure,
 } from "../redux/blogs/action";
 import { useSelector } from "react-redux";
+import { useNavigate, Navigate } from "react-router-dom";
 import Navin from "../components/Navin";
 
 const LogOut = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const login = useSelector((state) => state.login);
   const blogs = useSelector((state) => state.blogs);
 
@@ -21,7 +23,12 @@ const LogOut = () => {
   dispatch(loginInitiate());
   dispatch(blogsInitiate());
 
-  return <Navin />;
+  return (
+    <>
+      <Navin />
+      <Navigate to="/" />
+    </>
+  );
 };
 
 export default LogOut;
